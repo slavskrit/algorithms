@@ -1,8 +1,11 @@
 public class Solution {
+    
+    int begin = 0;
+
     public String solveEquation(String equation) {
         char[] array = equation.toCharArray();
-        int[] leftValues = evaluate(array, 0, equation.length());
-        int[] rightValues = evaluate(array, leftValues[2], equation.length());
+        int[] leftValues = evaluate(array, begin, equation.length());
+        int[] rightValues = evaluate(array, begin, equation.length());
         int x = leftValues[0] - rightValues[0];
         int digits = rightValues[1] - leftValues[1];
         if (x == 0 && digits == 0) return "Infinite solutions";
@@ -53,6 +56,7 @@ public class Solution {
             }
         }
         digit += ifPositive ? temp : -temp;
-        return new int[]{x, digit, start};
+        begin = start;
+        return new int[]{x, digit};
     }
 }
