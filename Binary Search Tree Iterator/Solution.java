@@ -28,10 +28,9 @@ public class BSTIterator {
     /** @return the next smallest number */
     public int next() {
         TreeNode temp = deque.poll();
-        TreeNode right = temp.right;
-        if (right != null) {
-            deque.push(right);
-            TreeNode left = right.left;
+        if (temp.right != null) {
+            deque.push(temp.right);
+            TreeNode left = temp.right.left;
             while (left != null) {
                 deque.push(left);
                 left = left.left;
