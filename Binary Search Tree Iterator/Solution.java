@@ -12,12 +12,16 @@ public class BSTIterator {
 
     private Deque<TreeNode> deque = new LinkedList<>();
 
-    public BSTIterator(TreeNode root) {
-        TreeNode current = root;
+    private void searchLeft(TreeNode current) {
         while (current != null) {
             deque.push(current);
             current = current.left;
         }
+    }
+
+    public BSTIterator(TreeNode root) {
+        TreeNode current = root;
+        searchLeft(current);
     }
 
     /** @return whether we have a next smallest number */
@@ -30,11 +34,7 @@ public class BSTIterator {
         TreeNode temp = deque.poll();
         if (temp.right != null) {
             deque.push(temp.right);
-            TreeNode left = temp.right.left;
-            while (left != null) {
-                deque.push(left);
-                left = left.left;
-            }
+            searchLeft(temp.right.left);
         }
         return temp.val;
     }
