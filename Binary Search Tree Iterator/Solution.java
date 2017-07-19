@@ -22,7 +22,7 @@ public class BSTIterator {
 
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return deque.size() > 0;
+        return !deque.isEmpty();
     }
 
     /** @return the next smallest number */
