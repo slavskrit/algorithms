@@ -23,7 +23,6 @@ public class WordDictionary {
                 node.letters[word.charAt(i) - 'a'] = new TrieNode();
                 node = node.letters[word.charAt(i) - 'a'];
             }
-
         }
         node.isCompleteWord = true;
     }
