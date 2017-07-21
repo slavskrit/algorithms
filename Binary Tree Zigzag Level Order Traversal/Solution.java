@@ -16,21 +16,19 @@ public class Solution {
         boolean direction = true;
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> temp = new ArrayList<>();
+            List<Integer> temp = new LinkedList<>();
             while (size-- > 0) {
                 TreeNode current = queue.poll();
-                temp.add(current.val);
+                if (direction) {
+                    temp.add(current.val);
+                } else {
+                    temp.add(0, current.val);
+                }
                 if (current.left != null) queue.offer(current.left);
                 if (current.right != null) queue.offer(current.right);
             }
-            if (direction) {
-                result.add(temp);
-                direction = false;
-            } else {
-                Collections.reverse(temp);
-                result.add(temp);
-                direction = true;
-            }
+            direction = !direction;
+            result.add(temp);
         }
         return result;
     }
