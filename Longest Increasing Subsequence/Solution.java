@@ -3,7 +3,7 @@ public class Solution {
         int length = nums.length;
         if (length == 0) return 0;
         int[] dp = new int[length];
-        int result = Integer.MIN_VALUE;
+        int result = 1;
         for (int i = length - 1; i >= 0; i--) {
             int localMax = 0;
             // Find a greater int with max value
