@@ -6,11 +6,8 @@ public class Solution {
         dp[0] = true;
         for (int i = 0; i < length; i++) {
             for (int j = i + 1; j <= length; j++) {
-                String temp = s.substring(i, j);
-                if (wordDict.contains(temp)) {
-                    if (dp[j - temp.length()]) {
-                        dp[j] = true;
-                    }
+                if (wordDict.contains(s.substring(i, j)) && dp[i]) {
+                    dp[j] = true;
                 }
             }
         }
