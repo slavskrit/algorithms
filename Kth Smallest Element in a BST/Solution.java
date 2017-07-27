@@ -8,8 +8,7 @@
  * }
  */
 public class Solution {
-    Integer result = null;
-    Integer counter;
+    Integer result, counter = null;
 
     public int kthSmallest(TreeNode root, int k) {
         counter = k;
