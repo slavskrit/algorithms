@@ -17,10 +17,6 @@
  */
 public class Solution {
     public TreeNode sortedListToBST(ListNode head) {
-        return helper(head);
-    }
-
-    private TreeNode helper(ListNode head) {
         if (head == null) return null;
         ListNode slow = head;
         if (head.next == null) return new TreeNode(slow.val);
@@ -29,11 +25,11 @@ public class Solution {
             slow = slow.next;
             fast = fast.next.next;
         }
-        ListNode temp = slow.next;
+        ListNode newHead = slow.next;
         slow.next = null;
-        TreeNode root = new TreeNode(temp.val);
-        root.left = helper(head);
-        root.right = helper(temp.next);
+        TreeNode root = new TreeNode(newHead.val);
+        root.left = sortedListToBST(head);
+        root.right = sortedListToBST(newHead.next);
         return root;
     }
 }
