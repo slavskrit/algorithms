@@ -16,12 +16,12 @@ public class Solution {
         if (cursor == w.length) return true;
         if (y < 0 || y >= m || x < 0 || x >= n) return false;
         if (board[y][x] != w[cursor]) return false;
-        board[y][x] ^= 333;
+        board[y][x] += 'a';
         boolean exist = backtrack(board, w, cursor + 1, y + 1, x, m, n) ||
                 backtrack(board, w, cursor + 1, y - 1, x, m, n) ||
                 backtrack(board, w, cursor + 1, y, x + 1, m, n) ||
                 backtrack(board, w, cursor + 1, y, x - 1, m, n);
-        board[y][x] ^= 333;
+        board[y][x] -= 'a';
         return exist;
     }
 }
