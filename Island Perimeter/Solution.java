@@ -1,8 +1,10 @@
 public class Solution {
     public int islandPerimeter(int[][] grid) {
         int perimeter = 0;
-        for (int y = 0; y < grid.length; y++) {
-            for (int x = 0; x < grid[y].length; x++) {
+        int maxY = grid.length;
+        int maxX = grid[0].length;
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
                 if (grid[y][x] == 1) {
                     if (y == 0) {
                         perimeter++;
@@ -10,10 +12,10 @@ public class Solution {
                     if (x == 0) {
                         perimeter++;
                     }
-                    if (grid.length - 1 == y) {
+                    if (y == grid.length - 1) {
                         perimeter++;
                     }
-                    if (grid[y].length - 1 == x) {
+                    if (x == grid[y].length - 1) {
                         perimeter++;
                     }
                     if (x > 0) {
