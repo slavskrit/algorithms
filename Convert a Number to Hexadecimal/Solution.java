@@ -5,7 +5,7 @@ public class Solution {
         StringBuilder sb = new StringBuilder();
         while (num != 0) {
             sb.insert(0, helper[num & 15]);
-             num >>>= 4;
+            num >>>= 4;
         }
         return sb.toString();
     }
