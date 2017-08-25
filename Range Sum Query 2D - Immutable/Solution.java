@@ -5,7 +5,7 @@ class NumMatrix {
     public NumMatrix(int[][] matrix) {
         this.matrix = matrix;
         int height = matrix.length;
-        if(height == 0) return;
+        if (height == 0) return;
         int width = matrix[0].length;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
