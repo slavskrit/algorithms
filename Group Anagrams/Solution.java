@@ -1,3 +1,16 @@
+// https://leetcode.com/problems/group-anagrams
+// 
+// Given an array of strings, group anagrams together.
+// 
+// For example, given: ["eat", "tea", "tan", "ate", "nat", "bat"], 
+// Return:
+// 
+// [
+//   ["ate", "eat","tea"],
+//   ["nat","tan"],
+//   ["bat"]
+// ]
+// Note: All inputs will be in lower-case.
 public class Solution {
     private static String badHash(String string) {
         char[] result = new char[26];
