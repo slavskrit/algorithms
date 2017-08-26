@@ -1,3 +1,7 @@
+// https://leetcode.com/problems/sqrtx
+//
+// Implement int sqrt(int x).
+// Compute and return the square root of x.
 public class Solution {
     public int mySqrt(int x) {
         if (x == 0) return 0;
