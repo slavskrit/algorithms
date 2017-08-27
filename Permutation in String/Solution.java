@@ -31,15 +31,15 @@ public class Solution {
         int[] firstBucket = new int[26];
         int[] secondBucket = new int[26];
         int length = array.length;
-        for (int i = first; i < second; i++) firstBucket[f[i] - 'a']++;
-        for (int i = first; i < second; i++) secondBucket[array[i] - 'a']++;
+        for (int i = first; i < second; i++) {
+            firstBucket[f[i] - 'a']++;
+            secondBucket[array[i] - 'a']++;
+        }
         while (second < length) {
             if (check(firstBucket, secondBucket)) return true;
-            else {
-                secondBucket[array[first] - 'a']--;
-                secondBucket[array[second] - 'a']++;
-                first++; second++;
-            }
+            secondBucket[array[first] - 'a']--;
+            secondBucket[array[second] - 'a']++;
+            first++; second++;
         }
         return check(firstBucket, secondBucket);
     }
