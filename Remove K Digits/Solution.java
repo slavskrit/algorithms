@@ -23,7 +23,7 @@
 class Solution {
     public String removeKdigits(String num, int k) {
         if (k == 0 || num.length() == 0) return num;
-        Deque<Character> deque = new LinkedList<>(num.length());
+        Deque<Character> deque = new LinkedList<>();
         for (char c : num.toCharArray()) {
             while (!deque.isEmpty() && deque.peek() > c && k-- > 0) {
                 deque.pop();
