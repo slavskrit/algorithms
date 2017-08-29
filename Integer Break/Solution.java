@@ -17,7 +17,7 @@ class Solution {
             if (n == 4) {
                 result *= 4;
                 n -= 4;
-            }else if (n >= 3) {
+            } else if (n >= 3) {
                 result *= 3;
                 n -= 3;
             } else {
