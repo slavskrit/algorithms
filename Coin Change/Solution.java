@@ -22,10 +22,11 @@ class Solution {
         int[] dp = new int[amount + 1];
         Arrays.sort(coins);
         for (int i = 0; i < length; i++) {
-            if (coins[i] > amount) break;
-            dp[coins[i]] = 1;
-            for (int j = coins[i] + 1; j <= amount; j++) {
-                int left = dp[j - coins[i]];
+            int coin = coins[i];
+            if (coin > amount) break;
+            dp[coin] = 1;
+            for (int j = coin + 1; j <= amount; j++) {
+                int left = dp[j - coin];
                 if (left == 0) continue;
                 int current = dp[j] == 0 ? Integer.MAX_VALUE : dp[j];
                 dp[j] = Math.min(left + 1, current);
