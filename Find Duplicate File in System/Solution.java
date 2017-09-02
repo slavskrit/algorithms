@@ -67,11 +67,11 @@ public class Solution {
                 } else {
                     temp.add(directory + "/" + files.get(file));
                     map.put(contents.get(file), temp);
+                    if (temp.size() == 2) {
+                        result.add(temp);
+                    }
                 }
             }
-        }
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            if (entry.getValue().size() > 1) result.add(entry.getValue());
         }
         return result;
     }
