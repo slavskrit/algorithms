@@ -38,7 +38,8 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        if not root: return True
+        if not root: 
+            return True
         level = [root.left, root.right]
         while level:
             left = level.pop(0)
