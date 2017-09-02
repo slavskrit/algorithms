@@ -31,19 +31,16 @@ public class Solution {
     }
 
     public String[] findWords(String[] words) {
-        List<String> result = new ArrayList<>();
-        for (String s : words) {
+        List<String> result = new ArrayList<>(words.length);
+        first : for (String s : words) {
             char[] array = s.toCharArray();
             int[] row = getRow(array[0]);
-            for (int i = 0; i <= s.length(); i++) {
-                if (i == s.length()) {
-                    result.add(s);
-                    break;
-                }
+            for (int i = 0; i < s.length(); i++) {
                 if (row[array[i]] == 0) {
-                    break;
+                    continue first;
                 }
             }
+            result.add(s);
         }
         return result.toArray(new String[result.size()]);
     }
