@@ -40,6 +40,7 @@ public class Solution {
             List<String> files = new ArrayList<>();
             List<String> contents = new ArrayList<>();
             String directory = "";
+            // Find directory, files and contents related to this directory.
             for (int i = 0, j = 2; j < path.length(); j++){
                 if (path.charAt(j) == ' ') {
                     directory = path.substring(i, j);
@@ -55,6 +56,7 @@ public class Solution {
                     }
                 }
             }
+            // If we have exactly 1 file currently in map, we just add this to result
             for (int cursor = 0; cursor < files.size(); cursor++) {
                 List<String> temp = map.get(contents.get(cursor));
                 if (temp == null) {
