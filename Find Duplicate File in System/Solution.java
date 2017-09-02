@@ -40,37 +40,30 @@ public class Solution {
             List<String> files = new ArrayList<>();
             List<String> contents = new ArrayList<>();
             String directory = "";
-            int i = 0;
-            int j = 1;
-            while (j++ < path.length()) {
+            for (int i = 0, j = 2; j < path.length(); j++){
                 if (path.charAt(j) == ' ') {
                     directory = path.substring(i, j);
-                    break;
-                }
-            }
-            i = j + 1;
-            while (j++ < path.length() - 1) {
-                if (path.charAt(j) == '(') {
-                    files.add(path.substring(i, j));
                     i = j + 1;
-                } else if (path.charAt(j) == ')') {
-                    contents.add(path.substring(i, j));
-                    i = j + 2;
-                }
-            }
-            for (int file = 0; file < files.size(); file++) {
-                List<String> temp = map.get(contents.get(file));
-                if (temp == null) {
-                    List<String> t = new ArrayList<>();
-                    t.add(directory + "/" + files.get(file));
-                    map.put(contents.get(file), t);
-                } else {
-                    temp.add(directory + "/" + files.get(file));
-                    map.put(contents.get(file), temp);
-                    if (temp.size() == 2) {
-                        result.add(temp);
+                    while (j++ < path.length() - 1) {
+                        if (path.charAt(j) == '(') {
+                            files.add(path.substring(i, j));
+                            i = j + 1;
+                        } else if (path.charAt(j) == ')') {
+                            contents.add(path.substring(i, j));
+                            i = j + 2;
+                        }
                     }
                 }
+            }
+            for (int cursor = 0; cursor < files.size(); cursor++) {
+                List<String> temp = map.get(contents.get(cursor));
+                if (temp == null) {
+                    temp = new ArrayList<>();
+                } else if (temp.size() == 1) {
+                    result.add(temp);
+                }
+                temp.add(directory + "/" + files.get(cursor));
+                map.put(contents.get(cursor), temp);
             }
         }
         return result;
