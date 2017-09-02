@@ -35,8 +35,8 @@ public class Solution {
         first : for (String s : words) {
             char[] array = s.toCharArray();
             int[] row = getRow(array[0]);
-            for (int i = 0; i < s.length(); i++) {
-                if (row[array[i]] == 0) {
+            for (char c : array) {
+                if (row[c] == 0) {
                     continue first;
                 }
             }
