@@ -19,7 +19,7 @@ class Solution {
         int[] array = new int[9];
         int[] bucket = new int[10];
         int cursor = 8;
-        // Parse into into array.
+        // Parse into int array.
         while (num != 0) {
             int t = num % 10;
             bucket[t]++;
