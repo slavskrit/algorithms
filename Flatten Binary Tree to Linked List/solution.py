@@ -46,17 +46,17 @@ class Solution(object):
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
         """
-        if not root:
+        if not root: 
             return root
-        dummy = TreeNode(0)
-        tail = dummy
+        tail = root
         stack = [root]
         while stack:
             current = stack.pop()
-            tail.right = current
-            tail.left = None
-            tail = tail.right
             if current.right:
                 stack.append(current.right)
             if current.left:
                 stack.append(current.left)
+            tail.right = current
+            tail.left = None
+            tail = tail.right
+        tail.right = None
