@@ -28,6 +28,7 @@ class Solution:
         if len(nums) == 3:
             return nums[0] * nums[1] * nums[2]
         maxvalue = 10001
+        temp = -maxvalue
         mina = minb = minc = maxvalue
         maxa = maxb = maxc = -maxvalue
         for i in nums:
@@ -42,6 +43,8 @@ class Solution:
                 elif i > maxc:
                     maxc = i
             if i <= 0:
+                if mina != maxvalue and minb != maxvalue and minc != maxvalue:
+                    temp = max(temp, mina * minb * minc)
                 if i < mina:
                     minc = minb
                     minb = mina
@@ -57,5 +60,5 @@ class Solution:
         if maxa == -maxvalue: maxa = 0
         if maxb == -maxvalue: maxb = 0
         if maxc == -maxvalue: maxc = 0
-        if maxa == 0: return mina * minb * minc
+        if maxa == maxb == maxc == 0: return max(mina * minb * minc, temp)
         return max(mina * minb * minc, mina * minb * maxa, maxa * maxb * maxc)
