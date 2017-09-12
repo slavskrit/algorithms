@@ -28,37 +28,21 @@ class Solution:
         if len(nums) == 3:
             return nums[0] * nums[1] * nums[2]
         maxvalue = 10001
-        temp = -maxvalue
-        mina = minb = minc = maxvalue
+        mina = minb = maxvalue
         maxa = maxb = maxc = -maxvalue
         for i in nums:
-            if i > 0:
-                if i > maxa:
-                    maxc = maxb
-                    maxb = maxa
-                    maxa = i
-                elif i > maxb:
-                    maxc = maxb
-                    maxb = i
-                elif i > maxc:
-                    maxc = i
-            if i <= 0:
-                if mina != maxvalue and minb != maxvalue and minc != maxvalue:
-                    temp = max(temp, mina * minb * minc)
-                if i < mina:
-                    minc = minb
-                    minb = mina
-                    mina = i
-                elif i < minb:
-                    minc = minb
-                    minb = i
-                elif i < minc:
-                    minc = i
-        if mina == maxvalue: mina = 0
-        if minb == maxvalue: minb = 0
-        if minc == maxvalue: minc = 0
-        if maxa == -maxvalue: maxa = 0
-        if maxb == -maxvalue: maxb = 0
-        if maxc == -maxvalue: maxc = 0
-        if maxa == maxb == maxc == 0: return max(mina * minb * minc, temp)
-        return max(mina * minb * minc, mina * minb * maxa, maxa * maxb * maxc)
+            if i > maxa:
+                maxc = maxb
+                maxb = maxa
+                maxa = i
+            elif i > maxb:
+                maxc = maxb
+                maxb = i
+            elif i > maxc:
+                maxc = i
+            if i < mina:
+                minb = mina
+                mina = i
+            elif i < minb:
+                minb = i
+        return max(maxa * maxb * maxc, mina * minb * maxa)
