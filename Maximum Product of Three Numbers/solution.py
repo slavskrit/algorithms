@@ -57,4 +57,5 @@ class Solution:
         if maxa == -maxvalue: maxa = 0
         if maxb == -maxvalue: maxb = 0
         if maxc == -maxvalue: maxc = 0
+        if maxa == 0: return mina * minb * minc
         return max(mina * minb * minc, mina * minb * maxa, maxa * maxb * maxc)
