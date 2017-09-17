@@ -34,7 +34,7 @@ Sample Output
 
 import sys
 
-stacks_len = len(input().split())  # skip first line since it's useless
+stacks_len = len(input().split())
 stacks = [list(map(int, input().strip().split())) for _ in range(stacks_len)]
 heights = [sum(i) for i in stacks]
 
