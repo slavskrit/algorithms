@@ -47,9 +47,8 @@ Sample Output 1
 import sys
 
 def getWays(n, c):
-    c = sorted(c)
     dp = [0] * (n + 1)
-    for coin in c:
+    for coin in sorted(c):
         if coin <= n:
             dp[coin] += 1
             for i in range(coin + 1, n + 1):
