@@ -13,16 +13,12 @@
 public class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums.length == 0) return null;
-        if (nums.length == 1) return new TreeNode(nums[0]);
-        int left = 0;
-        int right = nums.length - 1;
-        return build(nums, left, right);
+        TreeNode head = build(nums, 0, nums.length - 1);
+        return head;
     }
 
     private TreeNode build(int[] nums, int left, int right) {
-        if (left > right) {
-            return null;
-        }
+        if (left > right) return null;
         int mid = (right + left) / 2;
         TreeNode temp = new TreeNode(nums[mid]);
         temp.left = build(nums, left, mid - 1);
