@@ -14,14 +14,10 @@
 class Solution {
     public boolean validPalindrome(String s) {
         char[] array = s.toCharArray();
-        int left = 0;
-        int right = array.length - 1;
-        while (left < right) {
+        for (int left = 0, right = array.length - 1; left < right; left++, right--) {
             if (array[left] != array[right]) {
                 return helper(array, left + 1, right) || helper(array, left, right - 1);
             }
-            left++;
-            right--;
         }
         return true;
     }
