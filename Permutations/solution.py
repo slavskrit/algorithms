@@ -26,8 +26,7 @@ class Solution(object):
 
     def helper(self, nums, current, result, max_current):
         if current == max_current:
-            result.append(nums[:])
-            return
+            return result.append(nums[:])
         for i in range(current, max_current):
             nums[i], nums[current] = nums[current], nums[i]
             self.helper(nums, current + 1, result, max_current)
