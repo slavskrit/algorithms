@@ -24,10 +24,10 @@ class Solution {
                 if (first[i - 1] == second[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
-                    int top = dp[i - 1][j];
-                    int left = dp[i][j - 1];
-                    int diagonal = dp[i - 1][j - 1];
-                    dp[i][j] = Math.min(Math.min(top, left), diagonal) + 1;
+                    int insert = dp[i - 1][j];
+                    int remove = dp[i][j - 1];
+                    int replace = dp[i - 1][j - 1];
+                    dp[i][j] = Math.min(Math.min(insert, remove), replace) + 1;
                 }
             }
         }
