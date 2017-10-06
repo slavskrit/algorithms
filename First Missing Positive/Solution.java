@@ -9,28 +9,17 @@
 // Your algorithm should run in O(n) time and uses constant space.
 public class Solution {
     public int firstMissingPositive(int[] nums) {
-        boolean isEqualToLength = false;
-        for (int i = 0; i < nums.length; i++) {
-            int value = nums[i];
-            while (value > 0 && value < nums.length && nums[value] != value) {
-                int temp = nums[value];
-                nums[value] = value;
-                value = temp;
-            }
-            if (value >= nums.length || value < 0) {
-                if (value == nums.length) {
-                    isEqualToLength = true;
-                }
-                nums[i] = 0;
-            }
-        }
         int result = 1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == result) {
-                result++;
+        for (int i = 0, length = nums.length; i < length; i++) {
+            while (nums[i] < length && nums[i] > 0 && nums[i] - 1 != i && nums[i] != nums[nums[i] - 1]) {
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
             }
         }
-        if (isEqualToLength && result == nums.length) result++;
+        for (int i : nums) {
+            if (i == result) result++;
+        }
         return result;
     }
 }
