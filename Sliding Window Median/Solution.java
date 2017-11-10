@@ -25,50 +25,28 @@
 // Note: 
 // You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
 class Solution {
-    private PriorityQueue<Integer> min;
-    private PriorityQueue<Integer> max;
-
     public double[] medianSlidingWindow(int[] nums, int k) {
         double[] result = new double[nums.length - k + 1];
         int cursor = 0;
-        min = new PriorityQueue<>();
-        max = new PriorityQueue<>(Collections.reverseOrder());
-        for (int i = 0, j = 0; i < nums.length; i++) {
-            if (i >= k) {
-                result[cursor++] = getMedian();
-                remove(nums[j++]);
+        PriorityQueue<Integer> min = new PriorityQueue<>();
+        PriorityQueue<Integer> max = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0, j = 0; i <= nums.length; i++) {
+            if (min.size() + max.size() >= k) {
+                if (min.size() == max.size()) {
+                    result[cursor++] = min.peek()/ 2.0 + max.peek() / 2.0;
+                } else {
+                    result[cursor++] = max.peek();
+                }
+                if (!min.remove(nums[j])) max.remove(nums[j]);
+                j++;
+                if (i == nums.length) break;
             }
-            add(nums[i]);
-        }
-        result[cursor] = getMedian();
-        return result;
-    }
-
-    private void add(int num) {
-        (num < getMedian() ? max : min).offer(num);
-        balance();
-    }
-
-    private void remove(int num) {
-        (num < getMedian() ? max : min).remove(num);
-        balance();
-    }
-
-    private void balance() {
-        if (max.size() > min.size()) {
+            max.offer(nums[i]);
             min.offer(max.poll());
+            if (min.size() > max.size()) {
+                max.offer(min.poll());
+            }
         }
-        if (min.size() - max.size() > 1) {
-            max.offer(min.poll());
-        }
-    }
-
-    private double getMedian() {
-        if (max.isEmpty() && min.isEmpty()) return 0.0;
-        double median = min.peek();
-        if (min.size() == max.size()) {
-            median = min.peek() / 2.0 + max.peek() / 2.0;
-        }
-        return median;
+        return result;
     }
 }
