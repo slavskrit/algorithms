@@ -24,12 +24,12 @@ class Solution {
         Arrays.sort(nums);
         int l = 0, r = nums.length - 1;
         while (l < r) {
+            sum += nums[l] + nums[r];
             int t = nums[l];
             nums[l++] = nums[r];
             nums[r--] = t;
         }
-        if (nums[0] <= 0) return false;
-        for (int i : nums) sum += i;
+        if (nums.length % 2 != 0) sum += nums[nums.length / 2];
         if (sum % 4 != 0) return false;
         int toFind = sum / 4;
         return dfs(0, toFind, toFind, toFind, toFind, nums);
