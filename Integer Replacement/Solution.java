@@ -30,11 +30,10 @@
 // 7 -> 6 -> 3 -> 2 -> 1
 class Solution {
     public int integerReplacement(int n) {
-        if (n == Integer.MAX_VALUE) return 32;
         return helper(n, 0);
     }
 
-    private int helper(int n, int count) {
+    private int helper(long n, int count) {
         if (n == 1) return count;
         if ((n & 1) != 1) {
             return helper(n >> 1, count + 1);
