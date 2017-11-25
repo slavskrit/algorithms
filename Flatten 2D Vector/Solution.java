@@ -23,18 +23,20 @@ public class Vector2D implements Iterator<Integer> {
         this.bigIterator = vec2d.iterator();
         if (!bigIterator.hasNext()) return;
         this.smallIterator = bigIterator.next().iterator();
-        while (bigIterator.hasNext() && !smallIterator.hasNext()) {
-            smallIterator = bigIterator.next().iterator();
-        }
+        findIterator();
     }
 
     @Override
     public Integer next() {
         int toReturn = smallIterator.next();
+        findIterator();
+        return toReturn;
+    }
+
+    private void findIterator() {
         while (!smallIterator.hasNext() && bigIterator.hasNext() ) {
             smallIterator = bigIterator.next().iterator();
         }
-        return toReturn;
     }
 
     @Override
