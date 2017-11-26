@@ -39,10 +39,9 @@ class ValidWordAbbr {
         for (String string : dictionary) {
             String key = getAbbreviation(string);
             String value = string;
-            if(abbreviations.containsKey(key)){
-                if(!abbreviations.get(key).equals(string)){
-                    value = "";
-                }
+            String temp = abbreviations.get(key);
+            if (temp != null && !temp.equals(string)){
+                value = "";
             }
             abbreviations.put(key, value);
         }
