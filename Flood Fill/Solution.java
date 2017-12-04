@@ -25,17 +25,18 @@
 // The value of each color in image[i][j] and newColor will be an integer in [0, 65535].
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        helper(image, sr, sc, image[sr][sc], newColor, new boolean[image.length][image[0].length]);
-        return image;
+        return helper(image, sr, sc, image[sr][sc], newColor, new boolean[image.length][image[0].length]);
     }
 
-    private void helper(int[][] image, int y, int x, int oldColor, int newColor, boolean[][] visited) {
-        if (y < 0 || y >= image.length || x < 0 || x >= image[0].length || image[y][x] != oldColor || visited[y][x]) return;
+    private int[][] helper(int[][] image, int y, int x, int oldColor, int newColor, boolean[][] visited) {
+        if (y < 0 || y >= image.length || x < 0 || x >= image[0].length || image[y][x] != oldColor || visited[y][x]) 
+            return image;
         image[y][x] = newColor;
         visited[y][x] = true;
         helper(image, y + 1, x, oldColor, newColor, visited);
         helper(image, y - 1, x, oldColor, newColor, visited);
         helper(image, y, x + 1, oldColor, newColor, visited);
         helper(image, y, x - 1, oldColor, newColor, visited);
+        return image;
     }
 }
