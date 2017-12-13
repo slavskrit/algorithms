@@ -1,4 +1,4 @@
-/***
+'''
 https://leetcode.com/problems/prefix-and-suffix-search
 
 Given many words, words[i] has weight i.
@@ -15,7 +15,8 @@ words has length in range [1, 15000].
 For each test case, up to words.length queries WordFilter.f may be made.
 words[i] has length in range [1, 10].
 prefix, suffix have lengths in range [0, 10].
-words[i] and prefix, suffix queries consist of lowercase letters only. ***/
+words[i] and prefix, suffix queries consist of lowercase letters only. 
+'''
 class WordFilter:
 
     def __init__(self, words):
