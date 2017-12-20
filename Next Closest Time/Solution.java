@@ -16,23 +16,26 @@
 // Explanation: The next closest time choosing from digits 2, 3, 5, 9, is 22:22. It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
 class Solution {
     public String nextClosestTime(String time) {
-        Integer[] ti = new Integer[] {time.charAt(0) - '0', time.charAt(1) - '0', time.charAt(3) - '0', time.charAt(4) - '0'};
-        Integer[] backup = ti.clone();
+        char[] ch = time.toCharArray();
+        Integer[] ti = new Integer[] {ch[0] - '0', ch[1] - '0', ch[3] - '0', ch[4] - '0'};
         Integer h = null, m = null;
-        boolean[] timeline = new boolean[2500];
+        boolean[] timeline = new boolean[2401];
         for (int h1 : ti) {
-            if (h1 > 2) continue;
-            for (int h2: ti) {
-                if (h1 == 2 && h2 > 4) continue;
-                for (int m1 : ti) {
-                    if (m1 > 5) continue;
-                    for (int m2: ti) {
-                        timeline[h1 * 1000 + h2 * 100 + m1 * 10 + m2] = true;
+            if (h1 <= 2) {
+                for (int h2: ti) {
+                    if (h1 != 2 || h2 <= 3) {
+                        for (int m1 : ti) {
+                            if (m1 <= 5) {
+                                for (int m2: ti) {
+                                    timeline[h1 * 1000 + h2 * 100 + m1 * 10 + m2] = true;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        int start = backup[0] * 1000 + backup[1] * 100 + backup[2] * 10 + backup[3];
+        int start = ti[0] * 1000 + ti[1] * 100 + ti[2] * 10 + ti[3];
         for (int i = start + 1; i <= 2401; i++) {
             if (i > 2400) i = 0;
             if (timeline[i]) {
@@ -41,11 +44,20 @@ class Solution {
                 break;
             }
         }
-        String result = "";
-        if (h < 10) result += "0";
-        result += h + ":";
-        if (m < 10) result += "0";
-        result += m;
-        return result;
+        if (h < 9) {
+            ch[0] = '0';
+            ch[1] = (char) (h + '0');
+        } else {
+            ch[0] = (char) (h / 10 + '0');
+            ch[1] = (char) (h % 10 + '0');
+        }
+        if (m < 9) {
+            ch[3] = '0';
+            ch[4] = (char) (m + '0');
+        } else {
+            ch[3] = (char) (m / 10 + '0');
+            ch[4] = (char) (m % 10 + '0');
+        }
+        return new String(ch);
     }
 }
