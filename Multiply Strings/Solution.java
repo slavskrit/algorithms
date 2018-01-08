@@ -27,12 +27,12 @@ class Solution {
                 result[cursor] += multiply % 10;
             }
         }
+        cursor = 0;
         if (result[0] == 0) {
             if (result[1] == 0) return "0";
-            for (int i = 0; i < resultLength; i++) result[i] += '0';
-            return new String(result, 1, resultLength - 1);
+            cursor = 1;
         }
         for (int i = 0; i < resultLength; i++) result[i] += '0';
-        return new String(result);
+        return new String(result, cursor, resultLength - cursor);
     }
 }
