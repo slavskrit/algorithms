@@ -14,28 +14,25 @@ class Solution {
         char[] second = num2.toCharArray();
         int firstLength = first.length;
         int secondLength = second.length;
-        int[] result = new int[firstLength + secondLength];
+        int resultLength = firstLength + secondLength;
+        char[] result = new char[resultLength];
+        int multiply = 0, cursor = 0;
         for (int s = secondLength - 1; s >= 0; s--) {
             for (int f = firstLength - 1; f >= 0; f--) {
-                int multiply = (second[s] - '0') * (first[f] - '0');
-                int left = s + f;
-                int right = s + f + 1;
-                int sum = multiply;
-                sum += result[right];
-                result[left] += sum / 10;
-                result[right] = sum % 10;
+                multiply = (second[s] - '0') * (first[f] - '0');
+                cursor = s + f + 1;
+                multiply += result[cursor];
+                result[cursor] = 0;
+                result[cursor - 1] += multiply / 10;
+                result[cursor] += multiply % 10;
             }
         }
-        int pointer = -1;
-        while (++pointer < result.length && result[pointer] == 0);
-        int begin = pointer;
-        char[] string = new char[result.length - begin];
-        pointer = 0;
-        if (string.length == 0) return "0";
-        while (pointer < string.length) {
-            string[pointer] = (char) (result[pointer + begin] + '0');
-            pointer++;
+        if (result[0] == 0) {
+            if (result[1] == 0) return "0";
+            for (int i = 0; i < resultLength; i++) result[i] += '0';
+            return new String(result, 1, resultLength - 1);
         }
-        return new String(string);
+        for (int i = 0; i < resultLength; i++) result[i] += '0';
+        return new String(result);
     }
 }
