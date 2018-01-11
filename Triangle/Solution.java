@@ -17,15 +17,9 @@
 public class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         for (int i = 1; i < triangle.size(); i++) {
-            List<Integer> current = triangle.get(i);
-            current.set(0, current.get(0) 
-                        + triangle.get(i - 1).get(0)); // set left border
-            current.set(current.size() - 1, current.get(current.size() - 1) 
-                        + triangle.get(i - 1).get(triangle.get(i - 1).size() - 1)); // set right border
-            for (int j = 1; j < current.size() - 1; j++) {
-                int temp = current.get(j);
-                current.set(j, Math.min(triangle.get(i - 1).get(j - 1) + current.get(j), triangle.get(i - 1).get(j) + current.get(j)));
-            }
+            triangle.get(i).set(0, triangle.get(i).get(0) + triangle.get(i - 1).get(0)); // set left border
+            triangle.get(i).set(triangle.get(i).size() - 1, triangle.get(i).get(triangle.get(i).size() - 1) + triangle.get(i - 1).get(triangle.get(i - 1).size() - 1)); // set right border
+            for (int j = 1; j < triangle.get(i).size() - 1; j++) triangle.get(i).set(j, Math.min(triangle.get(i - 1).get(j - 1) + triangle.get(i).get(j), triangle.get(i - 1).get(j) + triangle.get(i).get(j)));
         }
         return Collections.min(triangle.get(triangle.size() - 1));
     }
