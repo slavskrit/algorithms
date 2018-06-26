@@ -52,7 +52,6 @@ class Solution {
         if (meet == 2) return true;
         int[] bucket = new int[26];
         for (int i = 0; i < A.length(); i++) {
-            System.out.println(A.charAt(i));
             bucket[A.charAt(i) - 'a']++;
             if (bucket[A.charAt(i) - 'a'] >= 2) return true;
         }
