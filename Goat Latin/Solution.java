@@ -37,18 +37,11 @@ class Solution {
         char[] array = S.toCharArray();
         StringBuilder temp = new StringBuilder();
         StringBuilder result = new StringBuilder();
+        StringBuilder ma = new StringBuilder("ma");
         Set<Character> viowels = new HashSet<>();
-        viowels.add('a');
-        viowels.add('e');
-        viowels.add('i');
-        viowels.add('o');
-        viowels.add('u');
-        viowels.add('A');
-        viowels.add('E');
-        viowels.add('I');
-        viowels.add('O');
-        viowels.add('U');
-        int count = 1;
+        for (char d : new char[]{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}) {
+            viowels.add(d);
+        }
         for (int j = 0; j < array.length; j++) {
             char c = array[j];
             if (c == ' ' || j == array.length - 1) {
@@ -58,13 +51,10 @@ class Solution {
                     temp.append(tc);
                     temp.deleteCharAt(0);
                 }
-                temp.append("ma");
-                for (int i = 0; i < count; i++) {
-                    temp.append('a');
-                }
+                ma.append('a');
+                temp.append(ma);
                 if (j != array.length - 1) temp.append(' ');
                 result.append(temp.toString());
-                count++;
                 temp = new StringBuilder();
             } else {
                 temp.append(c);
