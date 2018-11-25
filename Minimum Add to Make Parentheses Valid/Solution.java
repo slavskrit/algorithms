@@ -33,21 +33,19 @@
 // 
 // S.length <= 1000
 // S only consists of '(' and ')' characters.
-class Solution {
-    public int minAddToMakeValid(String S) {
-        int opens = 0;
-        int result = 0;
-        for (char c : S.toCharArray()) {
-            if (c == '(') {
-                opens++;
+public int minAddToMakeValid(String S) {
+    int opens = 0;
+    int result = 0;
+    for (char c : S.toCharArray()) {
+        if (c == '(') {
+            opens++;
+        } else {
+            if (opens > 0) {
+                opens--;
             } else {
-				if (opens > 0) {
-					opens--;
-				} else {
-					result++;
-				}
+                result++;
             }
         }
-        return result + opens;
     }
+    return result + opens;
 }
