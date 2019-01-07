@@ -37,32 +37,32 @@ class Solution {
         if (root == null) return null;
         dfs(root);
         if (head == null) return root;
-		head.left = tail;
+            head.left = tail;
         if (tail == null) {
-			head.left = head;
-			head.right = head;
-		} else {
-			tail.right = head;
-		}
-		return head;
+            head.left = head;
+	    head.right = head;
+	} else {
+	    tail.right = head;
+	}
+	return head;
 	}
 
-	private void dfs(Node root) {
-		if (root == null) return;
-		dfs(root.left);
-		if (head == null) {
-			head = root;
-		} else {
-			if (tail == null) {
-				tail = root;
-				head.right = tail;
-				tail.left = head;
-			} else {
-				tail.right = root;
-				root.left = tail;
-				tail = root;
-			}
-		}
-		dfs(root.right);
+     private void dfs(Node root) {
+	if (root == null) return;
+	dfs(root.left);
+	if (head == null) {
+	    head = root;
+	} else {
+	    if (tail == null) {
+		tail = root;
+		head.right = tail;
+		tail.left = head;
+	    } else {
+		tail.right = root;
+		root.left = tail;
+		tail = root;
+	    }
+	}
+	dfs(root.right);
 	}
 }
